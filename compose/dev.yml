@@ -1,0 +1,33 @@
+version: "2.1"
+services:
+  scylla-1:
+    image: scylladb/scylla
+    hostname: scylla-1
+    command: --broadcast-address scylla-1 --listen-address scylla-1
+    ports:
+      - 9160:9160
+      - 9042:9042
+    networks:
+      - scylla
+
+  scylla-2:
+    image: scylladb/scylla
+    hostname: scylla-2
+    command: --seeds scylla-1 --broadcast-address scylla-2 --listen-address scylla-2 --overprovisioned 1
+    networks:
+      - scylla
+    depends_on:
+      - scylla-1
+
+  scylla-3:
+    image: scylladb/scylla
+    hostname: scylla-3
+    command: --seeds scylla-1 --broadcast-address scylla-3 --listen-address scylla-3 --overprovisioned 1
+    networks:
+      - scylla
+    depends_on:
+      - scylla-1
+
+networks:
+  scylla:
+    driver: bridge
