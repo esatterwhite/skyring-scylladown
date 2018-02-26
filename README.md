@@ -6,6 +6,9 @@
 [![npm](https://img.shields.io/npm/v/@skyring-scylladown.svg?style=flat-square)](https://github.com/esatterwhite/skyring-scylladown)
 [![npm](https://img.shields.io/npm/l/@skyring/scylladown.svg?style=flat-square)](https://github.com/esatterwhite/skyring-scylladown/blob/master/LICENSE)
 
+Specialized leveldown backend for use with skyring. Not all level down features are supported.
+Namely, iterator / stream ranges and explicit buffer casting - all keys and values are returned as strings
+
 ## Example
 
 ```javascript
@@ -19,6 +22,12 @@ const opts = {
 
 const db = levelup(scylladown('table_name'), opts)
 ```
+
+### Options
+
+* `contactPoints` - Array of scylla nodes
+* `keyspace` - The scylla keyspace to operate int
+* `replicas` - The number of keyspace replicas to create
 
 [`ScyllaDB`]: https://github.com/Level/abstract-leveldown
 [`abstract-leveldown`]: https://github.com/Level/levelup

@@ -60,6 +60,7 @@ test('ScyllaDown', (t) => {
     require('abstract-leveldown/abstract/iterator-test').args(tt.test)
     require('abstract-leveldown/abstract/iterator-test').sequence(tt.test)
     require('abstract-leveldown/abstract/iterator-test').tearDown(tt.test, common)
+    tt.end()
   })
 
   t.end()

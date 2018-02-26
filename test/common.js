@@ -1,12 +1,14 @@
 'use strict'
 
+if (require.main === module) return
+
 const crypto = require('crypto')
 const now = process.hrtime().join()
 let db = 0
 module.exports = {
   location
 , lastLocation
-, setup
+, setUp
 , tearDown
 }
 
@@ -18,13 +20,13 @@ function lastLocation() {
   return crypto.createHash('md5').update(now).update(`${db}`).digest('hex').replace(/[0-9]/g, 'x')
 }
 
-function setup(t) {
+function setUp(t) {
   t.pass('setup complete')
   t.end()
 }
 
 function tearDown(t) {
-  setup(t)
+  setUp(t)
 }
 
 function collectEntries(iterator, callback) {
